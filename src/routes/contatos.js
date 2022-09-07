@@ -21,8 +21,13 @@ router.get('/',function(req,res,next){
 });
 
 router.get('/:id', function (req,res,next){
-    const contato = contatos.find(item => item.id ===   Number(req.params.id));
-    res.json(contato);
+    const contatoLocalizado = contatos.find(contato =>
+        contato.id ===   Number(req.params.id),
+    );
+    if(!contatoLocalizado){
+        return res.status(404).json({msg: "Não achei contato!"})
+    }
+    res.json(contatoLocalizado);
 })
 
 
