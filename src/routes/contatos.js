@@ -30,5 +30,15 @@ router.get('/:id', function (req,res,next){
     res.json(contatoLocalizado);
 })
 
+router.post('/', function(req,res,next){
+    const novoContato = {
+        id: contatos.length + 1,
+        nome: req.body.nome,
+        fone: req.body.fone
+    };
+    contatos.push(novoContato);
+    res.status(201).json(novoContato);
+})
+
 
 module.exports = router;
